@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    // 需求:在某个对象中,某个属性的值改变,相关联的属性的值会自动发生改变----vue中的计算属性
+
+    const person = {
+      firstName: '东方',
+      lastName: '华哥'
+    }
+    Object.defineProperty(person, 'fullName', {
+      configurable: true, // 默认false, 是否可以被修改删除
+      enumerable: true, // 默认false,是否可以被枚举遍历
+      // value:'哈_哈',
+      // writable:true, // 值是否可以被修改,默认是false
+      // 外部获取该属性值,自动进入到get
+      get() {
+        return this.firstName + '_' + this.lastName
+      },
+      // 外部设置属性值,自动进入到set
+      set(val) {
+        const names = val.split('_')
+        this.firstName = names[0]
+        this.lastName = names[1]
+      }
+
+    })
+    person.fullName = person.firstName + '_' + person.lastName
+    console.log(person.fullName)
+    person.firstName = '南宫'
+    person.lastName = '仙儿'
+    console.log(person.fullName)
+    person.fullName = '诸葛_雷哥'
+    console.log(person.firstName, person.lastName)
+
+  </script>
+</body>
+
+</html>

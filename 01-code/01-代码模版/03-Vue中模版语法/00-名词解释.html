@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+  <!--通过本地引入vue.js文件的方式进行开发-->
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!--html容器-->
+  <div id="app">
+    <!--容器中的所有的内容,都可以叫html模版-->
+    <!--{{}}叫插值,内部放的是表达值,动态数据-->
+    <h3>{{msg}}</h3>
+  </div>
+  <script type="text/javascript">
+    // 解释每一行代码的含义及MVVM
+    const vm = new Vue({
+      // el--->element--->元素--->根据'#app' id选择器获取html容器div
+      el:'#app',
+      // 数据对象
+      data:{
+        msg:'静哥喜欢雷哥' // 我们叫属性
+      }
+    })
+    // M---Model---数据,V---View---视图,  VM---vm Vue的实例对象,  vm操作M影响VM
+  </script>
+</body>
+
+</html>

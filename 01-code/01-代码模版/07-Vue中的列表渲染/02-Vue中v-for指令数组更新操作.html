@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>每天都被自己帅醒!</title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<fieldset>
+			<legend>数组数据更新操作</legend>
+			<button @click="addPerson">添加一个人</button><br>
+			姓名:<input type="text" v-model="name" /><br>
+			年龄:<input type="text" v-model="age" /><br>
+			描述:<input type="text" v-model="desc" /><br>
+			<hr>
+			<ul>
+				<li v-for="(per,index) in persons" :key="per.id">
+					id:{{per.id}}---name:{{per.name}}---age:{{per.age}}----desc:{{per.desc}}
+					-----
+					<button @click="updatePerson(index,{id:++perId,name,age,desc})">修改</button>
+					<button @click="delPerson(index)">删除</button>
+				</li>
+			</ul>
+		</fieldset>
+	</div>
+	<script type="text/javascript">
+		// v-for指令的案例
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				name: '', // 收集名字
+				age: 0, // 收集年龄
+				desc: '', // 收集描述信息
+				perId:10,
+				persons: [
+					{ id: 1, name: '佐助', age: 20, desc: '很帅的男人' },
+					{ id: 2, name: '鸣人', age: 19, desc: '很强的男人' },
+					{ id: 3, name: '自来也', age: 32, desc: '很值得尊敬的男人' }
+				]
+			},
+			methods: {
+				// 添加
+				addPerson() {
+					const per = {
+						id: ++this.perId,
+						name: this.name,
+						age: this.age,
+						desc: this.desc
+					}
+					this.persons.push(per)
+					this.name = ''
+					this.age = ''
+					this.desc = ''
+				},
+				// 删除
+				delPerson(index) {
+					this.persons.splice(index, 1)
+				},
+				// 修改
+				updatePerson(index, per) {
+					this.persons[index].id = per.id
+					this.persons[index].name = per.name
+					this.persons[index].age = per.age
+					this.persons[index].desc = per.desc
+				}
+			}
+
+		})
+
+	</script>
+</body>
+
+</html>
