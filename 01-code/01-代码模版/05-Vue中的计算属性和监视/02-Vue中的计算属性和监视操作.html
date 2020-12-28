@@ -21,20 +21,29 @@
     </fieldset>
     <fieldset>
       <legend>单向和双向操作</legend>
-      姓名(单向操作):<input type="text" placeholder="显示姓名" v-model="fullName1"><br />
-      姓名(单向操作):<input type="text" placeholder="显示姓名" v-model="fullName2"><br />
-      姓名(双向操作):<input type="text" placeholder="显示姓名" v-model="fullName3"><br />
+      姓名(单向操作):<input type="text" placeholder="显示姓名" readonly v-model="fullName1"><br />
+      姓名(双向操作):<input type="text" placeholder="显示姓名" v-model="fullName2"><br />
+      姓名(单向操作):<input type="text" placeholder="显示姓名" v-model="fullName3"><br />
     </fieldset>
   </div>
   <script type="text/javascript">
     const vm = new Vue({
       el: '#app',
       data: {
-        firstName: '东方',
-        lastName: '不败',
-        fullName3: ''
-      },
+        firstName: '东方', // 姓氏
+        lastName: '不败', // 名字
+        fullName3:'' // 第三个姓名
+       },
+      // 计算属性对象
       computed: {
+        // 通过firstName和lastName两个属性的值的变化,自动的能够计算出fullName1的属性值,那么此时通过计算属性的方式来实现
+        // fullName1:{
+        //   get(){
+        //     return this.firstName +'_'+this.lastName
+        //   },
+        // }
+        // 简写的方式:
+        // 下面的这个写法同上
         fullName1() {
           return this.firstName + '_' + this.lastName
         },
@@ -49,15 +58,25 @@
           }
         }
       },
+      // 监视:
       watch: {
-        firstName(val) {
-          this.fullName3 = val + '_' + this.lastName
+        // 监视firstName,是否变化,如果变化,fullName3的数据就发生改变'
+        firstName(val){
+          // val ---->firstName的属性值
+          this.fullName3 = val +'_' +this.lastName
         }
       }
     })
-    vm.$watch('lastName', function(val)  {
-      this.fullName3 = this.firstName + '_' + val
+
+    // 外部也可以进行监视的书写
+    // 调用的是Vue的实例对象的方法
+    vm.$watch('lastName',function(val){
+      // val ----lastName的属性值
+      this.fullName3=this.firstName +'_'+val
     })
+
+
+
 
     /*
 

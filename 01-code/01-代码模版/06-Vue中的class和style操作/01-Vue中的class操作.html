@@ -42,12 +42,12 @@
 		<fieldset>
 			<legend>class绑定:直接设置class值</legend>
 			<p :class="myClass">华哥</p>
-			<button @click="myClass='cls1'">改变样式</button>
+			<button @click="myClass='cls'">改变样式</button>
 		</fieldset>
 		<fieldset>
 			<legend>class绑定:使用对象的方式(cls是类名,固定的写法(写的肯定是类名,后面跟的是布尔值))</legend>
 			<!--当前的p标签的class是否要应用cls这个类样式-->
-			<p :class="{cls1:isCls}">不乱于心,不困于情</p>
+			<p :class="{cls:isCls}">不乱于心,不困于情</p>
 			<button @click="isCls=!isCls">改变样式</button>
 		</fieldset>
 		<fieldset>
@@ -56,7 +56,7 @@
 		</fieldset>
 		<fieldset>
 			<legend>class绑定:动态绑定和静态绑定结合</legend>
-			<p class="cls2" :class="myClass">不念过去,不畏将来</p>
+			<p class="cls" :class="clsC">不念过去,不畏将来</p>
 		</fieldset>
 		<fieldset>
 			<legend>class绑定:静态绑定,使用动态的方式绑定数据,同时内部使用静态值</legend>
@@ -71,17 +71,17 @@
 		// 需求3: 设置p标签同时应用多个类样式,采用数组的写法
 		// 需求4: 设置p标签有默认的样式(静态的写法),同时也有动态的写法
 		// 需求5: 设置p标签的样式,使用动态绑定的写法,内部采用静态方式书写---以后看到要认识
-
 		const vm = new Vue({
 			el:'#app',
 			data:{
-				myClass:'cls',
+				myClass:'cls1',
 				isCls:false,
 				clsA:'cls1',
 				clsB:'cls2',
-				clsC:'cls3'
+				clsC:'cls3',
 			}
 		})
+
 
 
 

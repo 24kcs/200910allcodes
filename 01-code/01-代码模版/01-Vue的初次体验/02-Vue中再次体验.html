@@ -12,16 +12,14 @@
 
 <body>
   <div id="app">
-    <!--插值语法的演示-->
     <input type="text" v-model="msg" />
     <p>{{msg}}</p>
   </div>
   <script type="text/javascript">
-    // 双向数据绑定的演示体验
     const vm = new Vue({
-      el: '#app',
-      data: {
-        msg: '123'
+      el:'#app',
+      data:{
+        msg:'年少不知富婆好,错把少女当成宝'
       }
     })
   </script>

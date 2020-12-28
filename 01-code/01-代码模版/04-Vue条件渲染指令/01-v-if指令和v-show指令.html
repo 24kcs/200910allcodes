@@ -13,22 +13,40 @@
 <body>
   <div id="app">
     <!--方式1:使用v-if指令实现,点击按钮切换p标签内容显示和隐藏-->
+    <!-- <button @click="changeIsSeen">华哥说:</button> -->
     <button @click="isSeen=!isSeen">华哥说:</button>
-    <p v-if="isSeen">我喜欢静哥</p>
-    <p v-else>我喜欢雷哥</p>
+    <h3 v-if="isSeen">我喜欢静哥</h3>
+    <h3 v-else>我喜欢雷哥</h3>
     <!--方式2:使用v-show指令实现,点击按钮切换p标签显示或隐藏-->
-    <button @click="isShow=!isShow">静哥说:</button>
-    <p v-show="isShow">我喜欢吃臭豆腐</p>
+    <button @click="isShow=!isShow">显示与隐藏的演示</button>
+    <p v-show="isShow">我来了</p>
     <hr>
 
   </div>
   <script type="text/javascript">
+
+  // v-if指令可以单独使用,也可以配合v-else指令只用
+  // v-if/v-else指令作用:根据条件的是否成立,来渲染对应的标签是否显示或者隐藏
+  // 使用了v-if/v-else指令的标签,如果表达式的结果是false,该标签在DOM树是不会存在的
+
+  // v-show指令,也可以设置标签的显示与隐藏,但是使用v-show的标签,不会在DOM树消失,而是通过控制display是不是none,来显示或者隐藏该标签
+
+  // v-if指令和v-show指令的区别:
+  // 共同点:都可以控制标签的显示或者隐藏，
+  // 不同点:一个是控制DOM树中的标签是否存在,一个是控制css中的display是不是none
+  // 还有一点:目前看不到(后期的前台项目中会演示出来)-----坑------
+
     const vm = new Vue({
-      el: '#app',
-      data: {
-        isSeen: true,
-        isShow:true
-      }
+      el:'#app',
+      data:{
+        isSeen:true,
+        isShow:false
+      },
+      // methods: {
+      //   changeIsSeen(){
+      //     this.isSeen =!this.isSeen
+      //   }
+      // }
     })
 
     /*

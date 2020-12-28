@@ -21,10 +21,9 @@
 			<hr>
 			<ul>
 				<li v-for="(per,index) in persons" :key="per.id">
-					id:{{per.id}}---name:{{per.name}}---age:{{per.age}}----desc:{{per.desc}}
-					-----
-					<button @click="updatePerson(index,{id:++perId,name,age,desc})">修改</button>
-					<button @click="delPerson(index)">删除</button>
+					id:{{per.id}}---索引:{{index}}---名字:{{per.name}}---年龄:{{per.age}}---描述信息:{{per.desc}}----
+					<button @click="updatePerson(index,{id:++perId,name,age,desc})">修改</button>---
+					<button @click="delPerson(index)">删除</button>---
 				</li>
 			</ul>
 		</fieldset>
@@ -34,43 +33,46 @@
 		const vm = new Vue({
 			el: '#app',
 			data: {
-				name: '', // 收集名字
-				age: 0, // 收集年龄
-				desc: '', // 收集描述信息
-				perId:10,
+				name: '', // 存储名字
+				age: 0, // 存储年龄
+				desc: '', // 存储描述信息
+				perId: 10, // id
 				persons: [
-					{ id: 1, name: '佐助', age: 20, desc: '很帅的男人' },
-					{ id: 2, name: '鸣人', age: 19, desc: '很强的男人' },
-					{ id: 3, name: '自来也', age: 32, desc: '很值得尊敬的男人' }
+					{ id: 1, name: '小甜甜', age: 20, desc: '很漂亮' },
+					{ id: 2, name: '小华华', age: 30, desc: '很美丽' },
+					{ id: 3, name: '小静静', age: 40, desc: '很好看' }
 				]
 			},
 			methods: {
-				// 添加
+				// 添加一个人的信息
 				addPerson() {
-					const per = {
+					const { name, age, desc } = this
+					const obj = {
 						id: ++this.perId,
-						name: this.name,
-						age: this.age,
-						desc: this.desc
+						name,
+						age,
+						desc
 					}
-					this.persons.push(per)
+					// 把对象添加到数组中
+					this.persons.push(obj)
+					// 清空文本框中的数据
 					this.name = ''
 					this.age = ''
 					this.desc = ''
 				},
-				// 删除
+				// 删除人的信息
 				delPerson(index) {
 					this.persons.splice(index, 1)
 				},
-				// 修改
+				// 修改数据
 				updatePerson(index, per) {
 					this.persons[index].id = per.id
 					this.persons[index].name = per.name
 					this.persons[index].age = per.age
 					this.persons[index].desc = per.desc
 				}
-			}
-
+			},
+			// 
 		})
 
 	</script>

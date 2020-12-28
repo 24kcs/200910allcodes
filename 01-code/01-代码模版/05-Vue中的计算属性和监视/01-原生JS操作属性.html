@@ -13,20 +13,24 @@
   <script type="text/javascript">
     // 需求:在某个对象中,某个属性的值改变,相关联的属性的值会自动发生改变----vue中的计算属性
 
+
     const person = {
-      firstName: '东方',
-      lastName: '华哥'
+      firstName: '东方', // 姓氏
+      lastName: '不败' // 名字
     }
+    // Object.defineProperty()方法就可以实现
+    // 参数1:目标对象
+    // 参数2:要添加的属性,字符串类型的
+    // 参数3:配置对象
     Object.defineProperty(person, 'fullName', {
-      configurable: true, // 默认false, 是否可以被修改删除
-      enumerable: true, // 默认false,是否可以被枚举遍历
+      configurable: false, // 默认为false,表示当前的这个属性是否可以被删除
+      enumerable: true, // 默认为false, 表示的是当前的这个属性是否可以被枚举(遍历)
       // value:'哈_哈',
-      // writable:true, // 值是否可以被修改,默认是false
-      // 外部获取该属性值,自动进入到get
+      // writable:true, // 默认为false,表示该属性值是否可以被修改
+      // 当外部通过person.fullName的时候,获取该属性值的时候,自动的进入到get中,并且把值显示出来
       get() {
         return this.firstName + '_' + this.lastName
       },
-      // 外部设置属性值,自动进入到set
       set(val) {
         const names = val.split('_')
         this.firstName = names[0]
@@ -34,13 +38,19 @@
       }
 
     })
+    // 姓名
     person.fullName = person.firstName + '_' + person.lastName
     console.log(person.fullName)
-    person.firstName = '南宫'
-    person.lastName = '仙儿'
+    // 改变姓氏或者名字
+    person.firstName = '诸葛'
+    person.lastName = '烤鱼'
     console.log(person.fullName)
-    person.fullName = '诸葛_雷哥'
-    console.log(person.firstName, person.lastName)
+    person.fullName = '南宫_仙儿'
+    console.log(person.firstName)
+    console.log(person.lastName)
+
+
+
 
   </script>
 </body>

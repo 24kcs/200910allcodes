@@ -10,9 +10,18 @@
 </head>
 
 <body>
+  <!--通过代码演示,理解MVVM-->
+  <!-- <div id="app">
+    <button @click="showMsg">显示效果</button>
+    <p>{{msg}}</p>
+  </div> -->
+
+
   <div id="app">
-    <!--双向数据绑定指令,v-model="表达式",一般用在表单标签中-->
+    <!--双向数据绑定指令 语法: v-model="表达式"  -->
     <input type="text" v-model="msg" />
+    <!--v-model指令的本质:是input事件监听+动态value属性-->
+    <input type="text" value="哈哈">
     <p>{{msg}}</p>
   </div>
   <script type="text/javascript">
@@ -20,9 +29,74 @@
     const vm = new Vue({
       el:'#app',
       data:{
-        msg:'真开心'
+        msg:'锄禾日当午,地雷埋下土,华哥走过去,炸成二百五'
       }
     })
+
+
+    // v-model双向数据绑定指令: 一般是用在表单标签中,用来收集数据的
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+    // this竟然可以直接访问msg
+
+    // const vm = new Vue({
+    //   el:'#app',
+    //   data:{
+    //     msg:'真好'
+    //   },
+    //   methods:{
+    //     showMsg(){
+    //       // msg属性在data对象中定义
+    //       // 通过 this.data.msg,this---->vm实例对象
+    //       console.log(this.msg)
+    //       this.msg+='==='
+    //     }
+    //   }
+    // })
+    // console.log(vm.msg)
+    // 为什么? 原因是:Vue中有数据代理
+    // console.log(vm.data.msg)
+    // vm 中是没有data属性的,但是有$data和_data
+    // data对象中的msg属性实际上是通过vm去调用
+    console.log(vm)
+    // 代码中 vm.msg 更加方便
+    console.log(vm.$data.msg)
+    console.log(vm._data.msg)
+    // data中的数据都可以直接通过vm访问,意味着: data是一个对象,是被代理者,vm是代理者
+    // 总结: data被代理对象, vm是代理对象
+    // Vue中有数据代理
+
+    // MVVM 解释:
+    // M---->Model---数据---data中的数据
+    // V---->View----视图---界面
+    // VM----vm-----Vue的实例对象
+    // 通过Vue操作数据,页面进行渲染
+    // vm---->Model-----View
+
+
+    // function MyVue(option){
+    //   var data = this.$data=this._data= option.data
+    // }
+    // const vm2 = new MyVue({
+    //   data:{
+    //     msg2:'哈哈'
+    //   }
+    // })
+
+
+
+
 
 
     /*
