@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+  <!--引入Vue文件的第一种方式:通过在线的BootCDN的方式-->
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+  <!--HTML容器-->
+  <div id="app">
+    <h3>{{msg}}</h3>
+  </div>
+  <script type="text/javascript">
+    // 第一种引入Vue的方式演示
+    const vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'测试123'
+      }
+    })
+</script>
+
+</body>
+
+</html>

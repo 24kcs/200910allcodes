@@ -12,12 +12,51 @@
 
 <body>
 	<div id="app">
-		<button>显示效果</button>
-		<button>更新数据</button>
-		<p>你打我啊</p>
+		<button @click="clear">显示效果</button>
+		<button @click="isShow=!isShow">更新数据</button>
+		<p v-show="isShow">你打我啊</p>
 	</div>
 	<script type="text/javascript">
-
+	const vm = new Vue({
+		el:'#app',
+		data:{
+			isShow:false
+		},
+		methods: {
+			clear(){
+				this.$destroy()
+			}
+		},
+		// 实例化对象初始化之前,该函数调用之前,this和数据还没有初始化完成
+		beforeCreate () {
+			console.log('数据初始化之前---beforeCreate',this)
+		},
+		// 实例化对象已经创建完毕
+		created () {
+			console.log('数据初始化完毕---created')
+		},
+		// 界面渲染之前,此时是假的页面
+		beforeMount () {
+			console.log('界面渲染之前----beforeMount')
+		
+		},
+		mounted () {
+			console.log('界面渲染完毕---mounted')
+		},
+		beforeUpdate () {
+			console.log('界面更新之前----beforeUpdate',this.isShow)
+		},
+		updated () {
+			console.log('界面更新之后---updated',this.isShow)
+		},
+		beforeDestroy () {
+			console.log('卸载前----beforeDestroy',this.isShow)
+		},
+		destroyed () {
+			console.log('卸载后----destroyed',this.isShow)
+			console.log(this)
+		}
+	})
 	</script>
 </body>
 

@@ -7,7 +7,9 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>每天都被自己帅醒!</title>
 	<link rel="stylesheet" href="">
+	<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
 	<script type="text/javascript" src="../js/vue.js"></script>
+
 </head>
 
 <body>
@@ -16,9 +18,11 @@
 		<h2>{{time}}</h2>
 		<h2>{{time|formatTime1}}</h2>
 		<h2>{{time|formatTime2}}</h2>
+		<h2>{{time|formatTime3}}</h2>
+		<h2></h2>
 	</div>
 
-	<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+	
 	<script type="text/javascript">
 		/**
 		 * Vue1.0中有自己的过滤器:filter
@@ -42,22 +46,32 @@
 		 * 
 		 * 
 		*/
-		//定义过滤器:
+		//定义过滤器:格式化一个日期时间
 
 
-		Vue.filter('formatTime1', (value) => {
+		Vue.filter('formatTime1',(value)=>{
 			return moment(value).format('YYYY-MM-DD hh:mm:ss');
 		})
-		Vue.filter('formatTime2', (value, formatStr = 'YYYY-MM-DD') => {
-			return moment(value).format(formatStr);
-		})
 
+		Vue.filter('formatTime2',(value,str)=>{
+			return moment(value).format(str||'YYYY-MM-DD');
+		})
+		Vue.filter('formatTime3',(value,str='hh:mm:ss')=>{
+			return moment(value).format(str);
+		})
 		const vm = new Vue({
-			el: '#app',
-			data: {
-				time: Date.now()
+			el:'#app',
+			data:{
+				time:Date.now()
 			}
 		})
+
+
+
+
+
+
+	
 	</script>
 </body>
 

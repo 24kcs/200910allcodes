@@ -17,3 +17,25 @@
 // 	}
 // 	window.myPlugin = myPlugin
 // })(window)
+
+(function (window) {
+  const MyPlugin = {}
+  MyPlugin.install = function (Vue) {
+    Vue.myGlobalMethod = function () {
+      console.log('该插件的全局方法')
+    }
+
+    // 2. 添加全局资源
+    Vue.directive('my-directive', {
+      bind (el, binding) {
+        el.innerHTML = binding.value+'-----测试插件'
+      }
+    })
+
+    // 4. 添加实例方法
+    Vue.prototype.$myMethod = function (methodOptions) {
+      console.log('该插件的实例方法')
+    }
+  }
+  window.MyPlugin = MyPlugin
+})(window)

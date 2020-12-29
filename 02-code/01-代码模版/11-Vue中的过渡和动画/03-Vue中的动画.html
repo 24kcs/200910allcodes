@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,33 +14,41 @@
 			width: 100px;
 			text-align: center;
 		}
-		.mode-enter-active {
-			transition: all 2s;
+		/* 显示状态 */
+		.fade-enter-active{
+			animation: bounce 1s;
 		}
-
-		.mode-leave-active {
-			transition: all 3s;
+		/* 隐藏状态 */
+		.fade-leave-active{
+			animation: bounce 1s reverse;
 		}
-		.mode-enter,
-		.mode-leave-to{
-			transform: translateX(20px);
+		/* 动画 */
+		@keyframes bounce{
+			0%{
+				transform: scale(0);
+			}
+			50%{
+				transform: scale(2);
+			}
+			100%{
+				transform: scale(1);
+			}
 		}
-	
 	</style>
 </head>
 
 <body>
 	<div id="app">
-		<button @click="isShow=!isShow">实现过渡效果</button>
-		<transition name="mode">
-			<p v-show="isShow">这是一个p</p>
+		<button @click="isShow=!isShow">显示动画效果</button>
+		<transition name="fade">
+			<p v-show="isShow">看效果</p>
 		</transition>
 	</div>
 	<script type="text/javascript">
 		const vm = new Vue({
-			el: '#app',
-			data: {
-				isShow: false
+			el:'#app',
+			data:{
+				isShow:false
 			}
 		})
 	</script>

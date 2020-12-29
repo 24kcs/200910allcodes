@@ -8,36 +8,35 @@
 	<title>每天都被自己帅醒!</title>
 	<link rel="stylesheet" href="">
 	<script type="text/javascript" src="../js/vue.js"></script>
+	<script src="./vue-myPlugin.js"></script>
 </head>
 
 <body>
 	<div id="app">
-		<button @click="clear">干掉vm和定时器</button>
-		<p v-if="isShow">哈哈</p>
+		<p v-my-directive="msg"></p>
 	</div>
 	<script type="text/javascript">
+		/**
+		 * Vue中的插件
+		 * https://cn.vuejs.org/v2/guide/plugins.html
+		 *
+		 *
+		 * Vue.use()内部会安装插件,内部调用install
+		 *
+		 */
+		// 声明使用插件
+		Vue.use(MyPlugin)
+		// 可以使用插件
+		Vue.myGlobalMethod()
 		const vm = new Vue({
 			el:'#app',
 			data:{
-				isShow:true
-			},
-			methods: {
-				clear(){
-					// 干掉vm
-					this.$destroy()
-				}
-			},
-			mounted () {
-				this.timeId = setInterval(() => {
-					this.isShow=!this.isShow
-					console.log('定时器执行中')
-				}, 2000);
-			},
-			beforeDestroy () {
-				clearInterval(this.timeId)
-				console.log('vm将要被干掉了')
+				msg:'哈哈'
 			}
 		})
+		// 调用插件中的实例方法
+		vm.$myMethod()
+	
 	</script>
 </body>
 

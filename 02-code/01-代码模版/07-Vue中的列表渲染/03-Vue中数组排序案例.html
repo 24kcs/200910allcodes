@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>每天都被自己帅醒!</title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<fieldset>
+			<legend>数据排序及相关操作</legend>
+			<input type="text" v-model="searchName" />
+			<ul>
+				<li v-for="(item,index) in personArr" :key="item.id">
+					id:{{item.id}}---索引:{{index}}---名字:{{item.name}}---年龄:{{item.age}}
+				</li>
+			</ul>
+			<button @click="state=1">升序</button>
+			<button @click="state=2">降序</button>
+			<button @click="state=0">原序</button>
+		</fieldset>
+	</div>
+	<script type="text/javascript">
+		// 数组的增加/修改删除/显示操作案例演示/MVVM
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				searchName: '', // 用来收集文本框中输入的数据的
+				state: 0, // 排序的标识, 0---原来的顺序,1---升序,2---降序
+				persons: [
+					{ id: 1, name: 'tom', age: 45 },
+					{ id: 2, name: 'lucy', age: 30 },
+					{ id: 3, name: 'rousi', age: 27 },
+					{ id: 4, name: 'ali', age: 85 }
+				]
+			},
+			// 计算属性
+			computed: {
+				// get操作
+				personArr() {
+
+					const { searchName, persons, state } = this
+					const arr = persons.filter(item => item.name.indexOf(searchName) !== -1)
+					// 判断标识
+					if (state !== 0) {
+						arr.sort((p1, p2) => {
+							return state === 2 ? p2.age - p1.age : p1.age - p2.age
+						})
+					}
+
+					return arr
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

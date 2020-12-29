@@ -17,12 +17,12 @@
 
 <body>
 	<div id="app">
-		<p v-txt-upper="msg1"></p>
-		<p v-txt-lower="msg1"></p>
+		<p v-text-upper="msg1"></p>
+		<p v-text-lower="msg1"></p>
 	</div>
 	<div id="app2">
-		<p v-txt-upper="msg2"></p>
-		<p v-txt-lower2="msg2"></p>
+		<p v-text-upper="msg1"></p>
+		<p v-text-lower="msg1"></p>
 	</div>
 	<script type="text/javascript">
 		/**
@@ -36,40 +36,53 @@
 		 * el.innerHTML=binding.value.toUpperCase()
 		 * }
 		 * }
-		 * 
+		 *
 		 * el:element---指令属性所爱的标签对象
 		 * binding:包含指令相关数据的对象容器,里面有value值就是标签中的值
 		 * 区别:全局的指令作用范围更大,局部的指令只能在自己的包裹的标签中使用
-		 * 
-		 * 
-		 * 
+		 *
+		 *
+		 *
 		 */
-			Vue.directive('txt-upper',(val,binding)=>{
-				val.innerHTML = binding.value.toUpperCase()
-			})
-		 const vm = new Vue({
-			 el:'#app',
-			 data:{
-				msg1:'What Are You No Sha Lei'
-			 },
-			 directives: {
-				 'txt-lower'(val,binding){
-					val.innerHTML= binding.value.toLowerCase()
-				 }
-			 }
-		 })
 
-		 const vm2 = new Vue({
-			 el:'#app2',
-			 data:{
-				 msg2:'What Are You No Sha Lei'
-			 },
-			 directives: {
-				 'txt-lower2'(val,binding){
-					val.innerHTML= binding.value.toLowerCase()
-				 }
+		 // 全局自定义指令
+		 // 
+		 // 参数1: 指令的名字  不能有v-开头的,但是在使用指令的时候  v-text-upper
+		 // 参数2: 回调函数
+			Vue.directive('text-upper',(el,binding)=>{
+				// el----标签A使用了v-text-upper ,那么el就代表的是标签A
+				el.innerHTML = binding.value.toUpperCase()
+			})
+		
+
+		const vm = new Vue({
+			el:'#app',
+			data:{
+				msg1:'What Are You No Sha Lei'
+			},
+			 // 局部自定义指令
+			 directives:{
+				'text-lower'(el,binding){
+					el.innerHTML = binding.value.toLowerCase()
+				}
 			 }
-		 })
+		})
+
+		const vm2 = new Vue({
+			el:'#app2',
+			data:{
+				msg1:'What Are You No Sha Lei'
+			}
+		})
+
+
+
+		// var obj ={
+		// 	"name":"小明"
+		// }
+		// console.log(obj.name)
+		// var key ='name'
+		// console.log(obj[key])
 	</script>
 </body>
 

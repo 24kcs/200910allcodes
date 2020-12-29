@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+  <!--通过本地引入vue.js文件的方式进行开发-->
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!--html的容器-->
+  <div id="app">
+    <!--html的模版-->
+    <!--msg:叫表达式-->
+    <h3>{{msg}}</h3>
+  </div>
+  <script type="text/javascript">
+    // 通过Vue实现页面的动态效果(通过Vue操作数据,页面会发生变化)
+    // 实例化Vue的对象,并进行初始化操作
+    // Vue()小括号中的对象---->配置对象---->里面都是各种各样的选项 (也叫做option API)
+    const vm = new Vue({
+      // el------element元素---->'#app'获取html中的id为app的div
+      el: '#app',
+      // 数据对象(里面的数据都是响应式的:Vue2.x的响应式数据原理和Vue3.0的响应式数据原理)
+      // 响应式数据,数据变量了,页面也会随之变化
+      // 数据对象
+      data: {
+        // msg 是个属性,data中的都是属性
+        msg: '床前明月光,雷哥去开窗,遇到一耳光,头发掉光光123'
+      }
+    })
+
+
+    // 实例化一个对象并初始化
+
+    // 构造函数
+    // 开辟一块新的内存空间(申请一块空闲的空间),存储当前的对象
+    // 设置this为当前的对象
+    // 初始化属性及方法的值
+    // 返回this对象
+    // 显示原型的产生
+  //   function Person(name, age) {
+  //     this.name = name
+  //     this.age = age
+  //     this.sayHi=function(){
+  //       console.log('您好')
+  //     }
+  //   }
+  //   Person.prototype.sayHi = function () {
+  //     console.log('啊捏哈谁有')
+  //   }
+
+  //   // per----> 引用(地址)变量
+  //   const per = new Person('静哥', 47)
+  //   console.log(per.name, per.age)
+  //   per.sayHi()
+
+  //   // 匿名对象
+  //   // new Person('静哥', 47)
+
+  //   // 执行函数定义
+  //   function f1(){
+  //     // 函数体
+  //     console.log('f1执行了')
+  //   }
+  //   // 调用函数
+  //  f1()
+  </script>
+</body>
+
+</html>

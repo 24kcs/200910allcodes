@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    // 需求:在某个对象中,某个属性的值改变,相关联的属性的值会自动发生改变----vue中的计算属性
+
+
+    const person = {
+      firstName: '东方', // 姓氏
+      lastName: '不败' // 名字
+    }
+    // Object.defineProperty()方法就可以实现
+    // 参数1:目标对象
+    // 参数2:要添加的属性,字符串类型的
+    // 参数3:配置对象
+    Object.defineProperty(person, 'fullName', {
+      configurable: false, // 默认为false,表示当前的这个属性是否可以被删除
+      enumerable: true, // 默认为false, 表示的是当前的这个属性是否可以被枚举(遍历)
+      // value:'哈_哈',
+      // writable:true, // 默认为false,表示该属性值是否可以被修改
+      // 当外部通过person.fullName的时候,获取该属性值的时候,自动的进入到get中,并且把值显示出来
+      get() {
+        return this.firstName + '_' + this.lastName
+      },
+      set(val) {
+        const names = val.split('_')
+        this.firstName = names[0]
+        this.lastName = names[1]
+      }
+
+    })
+    // 姓名
+    person.fullName = person.firstName + '_' + person.lastName
+    console.log(person.fullName)
+    // 改变姓氏或者名字
+    person.firstName = '诸葛'
+    person.lastName = '烤鱼'
+    console.log(person.fullName)
+    person.fullName = '南宫_仙儿'
+    console.log(person.firstName)
+    console.log(person.lastName)
+
+
+
+
+  </script>
+</body>
+
+</html>

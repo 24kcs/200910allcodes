@@ -13,11 +13,34 @@
 <body>
 
 	<div id="app">
-		<p v-text="msg1">显示结果:{{msg1}}</p>
+		<p>{{msg1}}</p>
+		<p v-text="msg1">华哥</p>
+		<p v-text="msg2"></p>
 		<p v-html="msg2"></p>
-		<a ref="a1">百度</a>
 	</div>
 	<script type="text/javascript">
+	const vm = new Vue({
+		el:'#app',
+		data:{
+			msg1:'what are you no sha lei',
+			msg2:'<a href="http://www.baidu.com">百度</a>'
+		}
+	})
+
+
+		/*
+		
+			v-bind
+			v-on
+			v-model
+			v-if/v-else/v-else-if
+			v-show
+			v-for
+			v-text 相当于DOM操作中的innerText或者textContent
+			v-html 相当于DOM操作中的innerHTML
+		
+		
+		*/
 
 		/**
 		 *
@@ -28,16 +51,7 @@
 		 *
 		 *
 		*/
-		const vm = new Vue({
-			el:'#app',
-			data:{
-				msg1:'真好',
-				msg2:'真香',
-			},
-			mounted () {
-				this.$refs.a1.href="http://www.baidu.com"
-			}
-		})
+		
 
 	</script>
 </body>

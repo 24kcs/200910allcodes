@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!--插值语法的演示:-->
+    <!--{{}}插值语法,里面是表达式,用来在成对的标签中显示内容-->
+    <h3>{{msg}}</h3>
+    <h3>{{msg.toUpperCase()}}</h3>
+    <h3>{{msg.split(' ').reverse().join(' ')}}</h3>
+    <hr>
+    <!--强制数据绑定指令的演示,如果希望一个html标签中的某个属性的值是动态的
+      v-bind:属性名字="表达式"  该表达式需要提前定义出来
+    -->
+    <a v-bind:href="url">百度</a>
+    <p v-bind:index="index">这是一个p</p>
+    <!--强制数据绑定的这个指令的简写方式:    
+      v-bind:属性名字="表达式" 可以简写   :属性名字="表达式"  如   :index="index"
+    -->
+    <a :href="url">百度</a>
+    <hr>
+    <!--绑定事件监听的指令
+      v-on:事件名字="回调函数"
+    -->
+    <button v-on:click="showMsg1">静哥说:</button>
+    <button v-on:click="showMsg2">华哥说:</button>
+    <button v-on:click="showMsg3">雷哥说:</button>
+    <hr>
+    <!--绑定事件监听的简写方式:  @事件名字="回调函数"  -->
+    <button @click="showMsg4">小富富</button>
+   
+    <hr>
+    <!--ref的样式,需求:点击按钮,修改p标签中的内容-->
+    <button @click="changeTxt">改变p中的内容</button>
+    <p>{{txt}}</p>
+    <!--操作DOM的方式来修改p中的内容-->
+    <button @click="changeTxt2">改变p中的内容</button>
+    <!--ref:在Vue中的作用,可以获取DOM元素及组件标签,通过Vue的实例对象.$refs.p1可以获取该标签-->
+    <p ref="p1">今天好开心啊</p>
+    <hr>
+
+
+
+  </div>
+  <script type="text/javascript">
+    // 实例化Vue,并进行初始化
+    const vm = new Vue({
+      // 通过id选择器获取对应html容器
+      el:'#app',
+      // 数据对象
+      data:{
+        msg:'what are you no sha lei',
+        url:'http://www.baidu.com',
+        index:100,
+        txt:'随便写'
+        
+      },
+      // 存放所有的方法(函数)
+      methods:{
+        // 方式1:
+        showMsg1:function (){
+          // this---->Vue的实例对象
+          console.log('我喜欢华哥',this)
+          console.log(this.msg)
+        },
+         // 方式2:
+        showMsg2:()=>{
+          // this----->window对象
+          console.log('我喜欢雷哥',this)
+        },
+        // 方式3: ----->推荐的方式
+        showMsg3(){
+          console.log('我喜欢静哥',this)
+        },
+        showMsg4(){
+          console.log('我喜欢你们所有的男人',this)
+        },
+        changeTxt(){
+          this.txt='我喜欢吃榴莲和臭豆腐,静哥说'
+        },
+        changeTxt2(){
+          this.$refs.p1.innerHTML='真好'
+        }
+      }
+    })
+
+
+
+    // function Person(name,age){
+    //   this.name = name
+    //   this.age=age
+    // }
+    // const per = new Person('佐助',20)
+    // per.sayHi is not a function
+    // per.sayHi()
+    // per.sayHi 属性---->存储的是函数的地址值---->找函数所在的内存的空间(函数的定义代码)
+    // Cannot read property 'sayHi' of undefined
+    // per.gender.sayHi()
+
+
+
+    // a.b.c
+    // 全局作用域/全局的执行上下文的环境中
+    // var a=''
+    // console.log(a.b.c) 
+
+
+
+
+
+    // 事件监听的回调函数的不同写法
+
+    /*
+        强制数据绑定:
+        为什么要有强制数据绑定? Vue搭建界面,离不开操作html标签,标签就有属性,属性中的值如果是动态的,那么操作起来会非常的方便,但是有很多的属性就是普通的标签的普通的属性,希望普通的属性中的数据也可以是动态的
+
+        强制数据绑定的解释:标签上的一些属性的值能够动态的进行操作,但是需要Vue中的指令来实现
+        如何使用强制数据绑定；
+        Vue中的指令； 在标签上如果看到了v-开头的,一般都是Vue的指令
+        强制数据绑定的指令:  v-bind
+
+        强制数据绑定语法：
+         v-bind:属性名字="表达式"
+        注意: 一般该属性的值需要动态的进行操作,需要使用v-bind指令,一般都是普通的标签上的属性使用v-bind指令比较多
+        html标签:表单标签和普通标签
+
+        强制数据绑定的指令:    v-bind:属性名字="表达式"   也可以简写    :属性名字="表达式"
+        html标签中的属性需要存储动态的值,此时在Vue中使用v-bind指令即可解决
+        指令: Vue中只要是在标签中看到了v-开头的都叫指令
+
+
+        绑定事件监听:
+        指令:
+        v-on:事件名字="回调函数"
+        事件名字:   原来DOM中书写 ----> onclick="" 在Vue中书写:    v-on:click="回调函数"  把DOM中的on干掉,然后的名字都是小写的
+        回调函数的书写:
+        需要在methods对象中进行书写,同时书写方式:
+          方式1:  clickHandle1:function(){}
+          方式2:   clickHandle2:()=>{}
+          方式3:   clickHandle3(){}   推荐的写法
+
+        绑定事件监听指令,可以简写  ----->   @事件名字="回调函数"   -----使用率很高
+
+    */
+
+
+
+
+  </script>
+</body>
+
+</html>
