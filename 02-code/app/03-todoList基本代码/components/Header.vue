@@ -12,12 +12,12 @@
 export default {
   name: 'Header',
   // 接收
-  // props: {
-  //   addTodo: {
-  //     type: Function,
-  //     required: true, // 必须的
-  //   },
-  // },
+  props: {
+    addTodo: {
+      type: Function,
+      required: true, // 必须的
+    },
+  },
   data() {
     return {
       title: '', // 收集文本框中输入的数据的
@@ -33,11 +33,7 @@ export default {
           title,
           isCompleted: false,
         }
-        // this.addTodo(todo)
-        // 分发传递进来的事件
-        // 参数1:事件类型
-        // 参数2:该事件对应的回调函数中需要的参数数据
-        this.$emit('addTodo',todo)
+        this.addTodo(todo)
         // 清空文本框
         this.title = ''
       }
