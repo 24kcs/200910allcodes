@@ -1,36 +1,53 @@
-<!--最终在页面中是不会出现的-->
 <template>
-  <!--模版中只能有一对根标签-->
-  <div id="app">
-    <!--src目录中assets目录存放的静态资源主要是给各个组件使用的,该目录有无都可以-->
-    <img src="./assets/logo.png">
-    <!--组件标签:组件当成标签使用-->
-    <HelloWorld/>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <Header :addTodo="addTodo" />
+      <List :todos="todos"/>
+      <Footer />
+    </div>
   </div>
 </template>
-
 <script>
-// components目录中存放多个组件文件的目录
-// 引入了一个子级组件,后缀名可以省略
-import HelloWorld from './components/HelloWorld'
-// 向外暴露一个对象(暴露出去的是一个组件对象)
+// 引入Header组件
+import Header from './components/Header'
+// 引入List组件
+import List from './components/List'
+// 引入Footer组件
+import Footer from './components/Footer'
 export default {
-  // 当前组件的名字
   name: 'App',
   // 注册组件
   components: {
-    HelloWorld
+    Header,
+    List,
+    Footer
+  },
+  data () {
+    return {
+      todos: [
+        { id: 1, title: '奔驰', isCompleted: false },
+        { id: 2, title: '宝马', isCompleted: true },
+        { id: 3, title: '拖拉机', isCompleted: false }
+      ]
+    }
+  },
+  methods: {
+    // 添加todo的一个方法
+    addTodo(todo){
+      this.todos.unshift(todo)
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+/*app*/
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 </style>
