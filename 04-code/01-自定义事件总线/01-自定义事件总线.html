@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,28 @@
   <title>玉树临风美少年，揽镜自顾夜不眠 </title>
   <script src="./EventBus.js"></script>
 </head>
+
 <body>
   <script type="text/javascript">
-    EventBus.on('add',(data)=>{
-      console.log('add1----',data)
+
+    EventBus.on('add', (data) => {
+      console.log('add1----', data)
     })
-    EventBus.on('add',(data)=>{
-      console.log('add2----',data)
+    EventBus.on('add', (data) => {
+      console.log('add2----', data)
     })
-    EventBus.on('add',(data)=>{
-      console.log('add3----',data)
+    EventBus.on('add', (data) => {
+      console.log('add3----', data)
     })
-    EventBus.on('del',(data)=>{
-      console.log('del----',data)
+
+    EventBus.on('del', (data) => {
+      console.log('del1----', data)
     })
     EventBus.off('add')
     EventBus.emit('add',123)
-    EventBus.emit('del',456)
+    EventBus.emit('del',1234)
+
   </script>
 </body>
+
 </html>

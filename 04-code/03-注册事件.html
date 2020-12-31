@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+</head>
+<body>
+  <button id="btn">按钮</button>
+  <script type="text/javascript">
+  function f1(){
+    console.log('杨哥好帅1')
+  }
+  function f2(){
+    console.log('杨哥好帅2')
+  }
+  // 注册事件
+  // document.getElementById('btn').onclick= f1
+  // document.getElementById('btn').onclick= f2
+
+  document.getElementById('btn').addEventListener('click',f1,false)
+  document.getElementById('btn').addEventListener('click',f2,false)
+
+  </script>
+</body>
+</html>
