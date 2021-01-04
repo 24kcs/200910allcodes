@@ -1,11 +1,10 @@
 <template>
   <div>
-      <el-button type="primary">主要按钮</el-button>
+    <h2>Header组件</h2>
   </div>
 </template>
 <script>
 export default {
-  name:'App'
 }
 </script>
 <style scoped>
