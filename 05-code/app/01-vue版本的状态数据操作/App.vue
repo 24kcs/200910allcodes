@@ -11,12 +11,12 @@
 export default {
   name: 'App',
   // 状态数据对象
-  // data() {
-  //   return {
-  //     // 状态数据
-  //     count: 0,
-  //   }
-  // },
+  data() {
+    return {
+      // 状态数据
+      count: 0,
+    }
+  },
   computed: {
     evenOrOdd() {
       return this.count % 2 === 0 ? '偶数' : '奇数'
