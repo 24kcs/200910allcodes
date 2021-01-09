@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+</head>
+
+<body>
+  <div id="demo">
+    <p>华哥喜欢健哥</p>
+    <p>健哥喜欢禹哥</p>
+    <p>禹哥喜欢华哥</p>
+  </div>
+  <script type="text/javascript">
+    // 1.伪数组如何转成 真数组
+    const arr1 = document.getElementsByTagName('p')
+    // console.log(arr1 instanceof Array)
+    // console.log(Array.isArray(arr1))
+    // const list1 = [...arr1]
+    // const list2 = Array.from(arr1)
+    // const list3 = Array.prototype.slice.call(arr1)
+    // const list4 = [].slice.call(arr1)
+    // console.log(Array.isArray(list1))
+    // console.log(Array.isArray(list2))
+    // console.log(Array.isArray(list3))
+    // console.log(Array.isArray(list4))
+
+    // 2.nodeType节点:页面中所有的东西都可以叫节点, 节点,元素,标签
+    // DOM Document Object Model 文档对象模型---树形结构图
+    // 节点: 标签节点1/属性节点2/文本节点3(空白文本/文字文本)
+    // 标签: 元素, 标签节点
+    // const divNode = document.getElementById('demo')
+    // console.log(divNode.nodeType) // 1 是标签节点
+    // const attrNode = divNode.getAttributeNode('id')
+    // console.log(attrNode.nodeType) // 2 是属性节点
+    // const txtNode = divNode.firstChild
+    // console.log(txtNode.nodeType)  // 3 文本节点
+    // // 标签节点的个数
+    // console.log(divNode.children.length)
+    // console.log(divNode.childNodes.length)
+
+
+
+
+    // 3. Object.defineProperty()方法---为对象添加属性
+
+    var person = {
+      firstName: '东方',
+      lastName: '不败'
+    }
+
+    Object.defineProperty(person, 'fullName', {
+      configurable: false, // 默认是false, 是否可以被删除
+      enumerable: true, // 默认是false,是否可以被枚举
+      // value:'哈_哈', // fullName诸葛属性的默认值
+      // writable:true, // 默认是false, 是否可以修改该属性的值
+
+      // 明确什么时候会进入到get
+      // 当外部访问或者是要获取fullName这个属性的时候,自动的进入到get方法中
+      // 如: console.log(person.fullName) // 获取该属性值,此时就进来
+      // 如: var name = person.fullName 此时也会进来
+      get() {
+        console.log('------')
+        return this.firstName + '_' + this.lastName
+      },
+      // 什么时候会进入到set
+      // 当外部要设置或者修改该属性的时候,会自动的进入到set方法中
+      // 如: person.fullName='嘎_嘎'
+      // 如: person.fullName+='哈哈'
+      set(val) {
+        console.log('+++++++')
+        const names = val.split('_')
+        this.firstName = names[0]
+        this.lastName = names[1]
+      }
+    })
+    // console.log(person)
+    // person.fullName += '哈_哈'
+    // person.fullName = person.fullName + '哈_哈'
+    // person.fullName = person.firstName + '_' + person.lastName
+    // person.firstName = '诸葛'
+    // person.lastName = '孔明'
+    // console.log(person.fullName)
+    // person.fullName = '南宫_仙儿'
+    // console.log(person.firstName)
+    // console.log(person.lastName)
+
+    // TS  中有一种数据类型  枚举类型
+
+
+
+    // 4. Object.keys()方法
+    // 获取的是当前对象上的可以遍历的属性名字,最终放在数组中
+    // console.log( Object.keys(person))
+    // 5. 对象.hasOwnProperty()方法,判断当前对象中是否包含这个属性
+    // console.log(person.hasOwnProperty('firstName'))
+    // console.log(person.hasOwnProperty('toString'))
+
+
+
+
+    // 6. 文档碎片对象模型----DoucmentFragment---(高效的批量处理多个节点)
+    // 要求.通过文档碎片对象,把html标签容器中的内容更新
+
+    // 1. 创建文档碎片对象
+    const fragment = document.createDocumentFragment()
+    // 2. 获取要操作的html节点的容器
+    const divNode = document.getElementById('demo')
+    // 3. 把容器中所有的节点全都一个一个的添加到文档碎片对象中
+    while (divNode.firstChild) {
+      // 类似于剪切
+      fragment.appendChild(divNode.firstChild)
+    }
+
+    
+
+    // fragment文档碎片对象容器中空白节点和标签节点都存在
+    // 只对标签节点进行操作
+    fragment.childNodes.forEach(node=>{
+      node.nodeType===1 && (node.innerHTML='哈哈,我又变帅了')
+    })
+    // // 把文档碎片对象重新加入到div容器中
+    divNode.appendChild(fragment)
+    // console.log('========')
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

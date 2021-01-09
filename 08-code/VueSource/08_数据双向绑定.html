@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>06_模板解析_一般指令</title>
+  <script src="./js/mvvm.js"></script>
+  <script src="./js/compile.js"></script>
+  <script src="./js/observer.js"></script>
+  <script src="./js/watcher.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="msg">
+    <p>{{msg}}</p>
+  </div>
+  <script type="text/javascript">
+    const vm = new MVVM({
+      el: '#app',
+      data: {
+        msg:'哈哈'
+      },
+    })
+
+    /*
+      谈谈Vue中双向数据绑定的理解
+      new MVVM的时候,内部会先进行数据代理的操作,然后开始进行数据劫持的操作,最后开始进行模版解析操作
+      模版解析内部,把html容器中所有的节点全部放在文档碎片对象中,然后开始进行解析操作(调用init方法),
+      判断当前的节点是不是标签,如果是标签,把标签中所有的属性全部的获取到,并且进行遍历操作,判断当前的属性是不是以v-开头,如果是以v-开头,证明该属性是一个指令,如果是指令,判断该指令是 事件指令还是普通指令,v-model是普通指令,截取掉v-,剩下model,再获取对应的msg表达式,最终会调用bind方法,内部会调用updater对象中对应的modelUpdater方法,然后再为当前的input标签节点,通过addEventListener绑定input事件,及对应的回调函数.此时模版解析就结束了
+
+      如果页面中修改了文本框的值,此时调用上面input事件对应的回调,获取当前文本框中的value的值,和该文本框之前用到的vm中的msg表达式的值进行对比,如果不一样,修改vm中msg的值,一旦修改vm中msg的值,就会进入到MVVM中的object.defineproperty方法中的set方法,就会进入到observer中的object.defineproperty方法中的set方法中,就会让当前的msg属性对应的dep对象通知dep中的subs数组中的每个watcher对象,调用update方法,进行数据的更新操作,从而实现响应式数据的操作(数据变化,页面自动重新渲染)
+
+
+    
+    
+    */
+
+   
+  </script>
+</body>
+
+</html>

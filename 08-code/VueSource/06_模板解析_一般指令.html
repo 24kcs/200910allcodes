@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>06_模板解析_一般指令</title>
+  <script src="./js/mvvm.js"></script>
+  <script src="./js/compile.js"></script>
+  <script src="./js/observer.js"></script>
+  <script src="./js/watcher.js"></script>
+  <style type="text/css">
+    .cls {
+      color: red;
+    }
+
+    .cls2 {
+      font-size: 50px;
+    }
+
+    .cls3 {
+      background-color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- <p v-text="msg"></p> -->
+    <!-- <p v-html="url"></p> -->
+    <!-- <p v-html="msg2"></p> -->
+    <!-- <p v-bind:class="myClass"></p> -->
+    <p v-class="myClass" class="cls3">华华</p>
+
+
+    <!-- <span class="cls2" id="sp"></span> -->
+  </div>
+  <script type="text/javascript">
+  // document.getElementById('sp').className
+    const vm = new MVVM({
+      el: '#app',
+      data: {
+        msg: '源码真香',
+        url:'http://www.baidu.com',
+        msg2:'<a href="http://www.baidu.com">百度</a>',
+        myClass:'cls'
+
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>

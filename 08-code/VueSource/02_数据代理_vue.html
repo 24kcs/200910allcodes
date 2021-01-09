@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>02_数据代理</title>
+  <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+  <!--
+1. vue数据代理: data对象的所有属性的操作(读/写)由vm对象来代理操作
+2. 好处: 通过vm对象就可以方便的操作data中的数据
+3. 实现:
+  1). 通过Object.defineProperty(vm, key, {})给vm添加与data对象的属性对应的属性
+  2). 所有添加的属性都包含get/set方法
+  3). 在get/set方法中去操作data中对应的属性
+-->
+  <div id="app">
+  </div>
+
+  <script type="text/javascript">
+    const vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'真快乐'
+      }
+    })
+    // 可以通过Vue的实例对象vm来访问data对象中的数据msg
+    // console.log(vm.msg)
+    // data是undefined 所以,再访问msg就报错了
+    // console.log(vm.data.msg)
+    // 没有data属性,有$data,和_data
+    // console.log(vm)
+    console.log(vm.$data.msg)
+    console.log(vm._data.msg)
+    // 为什么vm可以直接访问msg,及不能通过data来访问
+    // 此时,可以证明,vm代理data,来访问data中的数据
+    // vm 是代理者
+    // data 是被代理者
+    // Vue中有数据代理
+
+    // 数据代理到底是怎么实现的
+    
+    
+  </script>
+
+</body>
+
+</html>
