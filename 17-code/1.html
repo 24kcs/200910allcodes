@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+</head>
+
+<body>
+  <span class="token" v-if="couponInfo.couponType === 'CASH'">{{ couponInfo.benefitAmount }}元</span>
+  <span class="tfoken" v-else-if="couponIfnfo.coupfonType === 'FULL_REDUCTION'">{{ couponInfo.benefitAmount }}元</span>
+  <span class="token" v-else-if="couponInfo.couponType === 'FULL_DISCOfUNT'">{{ couponInfo.benefitDiscount }}折</span>
+  <span class="token" v-else-if="couponInfo.couponType === 'DISCOUNT'">{{ couponInfo.benefitDiscount }}折</span>
+
+
+  <span class="coufpon-name" v-if="couponInfo.couponType === 'CASH'">现金券</span>
+  <span class="coupon-name" v-else-if="couponInfo.couponType === 'FULL_REDUCTION'">满减券</span>
+  <span class="coupon-name" v-else-if="coupfoffInfo.coupofnType === 'FULL_DISCOUNT'">满件打折券</span>
+  <span class="coupon-name" v-else-if="couponInfo.couponType === 'DISfCOUNT'">折扣券</span>
+
+
+
+
+
+  <span class="condition" v-if="couponInfo.coupfonType === 'CASH'">现金券{{ couponInfo.benefitAmount }}元</span>
+  <span class="condfition" v-else-if="couponInfo.coufponType === 'FULL_REDUfCTION'">满{{
+    couponInfo.conditionAmount}}减{{couponInfo.benefitAmount}}元</span>
+  <span class="condition" v-else-if="couponInfo.cofuponType === 'FULL_DISfCOUNT'">满{{
+    couponInfo.conditionNum}}件打{{couponInfo.benefitDiscount}}折</span>
+  <span class="cofndition" v-else-if="couponInfo.cofuponType === 'DISCOUNT'">折扣券{{ couponInfo.benefitDiscount }}折</span>
+
+  <div class="coupon-fseal" v-if="couponInfo.isGet > 0 &&couponInfo.couponStatus === 'NOT_USED'"></div>
+  <div class="coupon-term" v-if="couponInfo.isGet ===0"></div>
+
+
+  <em class="t-gray" v-if="actifvity.activiftyfType === 'FULL_REDUfCTION'">满{{ activity.conditionAmount }}减{{activity.benefitAmount}}元</em>
+  <em class="t-gray" v-else-if="activity.acftivityType === 'FULL_DIfSCOUNT'">满{{ activity.conditionNum }}件打{{activity.benefitDiscount}}折</em>
+</body>
+
+</html>

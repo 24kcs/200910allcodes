@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+</head>
+
+<body>
+  <span class="token" v-if="couponInfo.couponType === 'CASH'">{{ couponInfo.benefitAmount }}元</span>
+  <span class="token" v-else-if="couponInfo.couponType === 'FULL_REDUCTION'">{{ couponInfo.benefitAmount }}元</span>
+  <span class="token" v-else-if="couponInfo.couponType === 'FULL_DISCOUNT'">{{ couponInfo.benefitDiscount }}折</span>
+  <span class="token" v-else-if="couponInfo.couponType === 'DISCOUNT'">{{ couponInfo.benefitDiscount }}折</span>
+
+</body>
+
+</html>
